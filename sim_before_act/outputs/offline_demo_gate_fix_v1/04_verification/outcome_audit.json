@@ -1,0 +1,165 @@
+{
+  "approval_scope": "none",
+  "availability": {
+    "safety": {
+      "available": true,
+      "coverage": 1.0,
+      "evaluable": 10,
+      "interval": {
+        "confidence": 0.95,
+        "lower": 0.0,
+        "method": "wilson",
+        "scope": "Monte-Carlo sampling error only; excludes simulator model error",
+        "upper": 0.2775327998628892
+      },
+      "meaning": "violation of constraints / unsafe contacts among validly-run rollouts",
+      "of": 10,
+      "violation_fraction": 0.0,
+      "violations": 0
+    },
+    "task": {
+      "available": false,
+      "coverage": 0.0,
+      "evaluable": 0,
+      "failure": 0,
+      "failure_fraction": null,
+      "interval": null,
+      "meaning": "task_success / task_failure; unknown (segment horizon shorter than task horizon, or invalid/timeout) is NOT evaluable",
+      "of": 10,
+      "success": 0,
+      "unknown": 10
+    }
+  },
+  "decision": "REJECT",
+  "denominators": {
+    "all_rollouts": 10,
+    "determined": 0,
+    "excluded_from_fraction": {
+      "invalid": 0,
+      "timeout": 0,
+      "undetermined_valid": 10
+    },
+    "safety_evaluable": 10,
+    "task_evaluable": 0,
+    "used_for_fraction": "none (fraction withheld)",
+    "valid": 10
+  },
+  "evidence_summary": "safety evaluable 10/10 (0 violating); task evaluable 0/10 (0 success, 0 failure, 10 unknown); determined for required ['safety', 'task']: 0/10; need >= 8",
+  "n": 10,
+  "offline_decision_label": "WOULD_REJECT",
+  "per_rollout": [
+    {
+      "category": "unknown",
+      "index": 0,
+      "safety_reasons": [],
+      "safety_status": "clean",
+      "seed": 3757552657,
+      "simulation_completed": true,
+      "task_status": "unknown (not evaluable)",
+      "why_task_unknown": "horizon_kind=segment (rollout 0.766 s vs assumed task horizon 8.0 s); predicates unmet but inconclusive: ['lift', 'inside_tray', 'release_settle']; not evaluable: []"
+    },
+    {
+      "category": "unknown",
+      "index": 1,
+      "safety_reasons": [],
+      "safety_status": "clean",
+      "seed": 673228719,
+      "simulation_completed": true,
+      "task_status": "unknown (not evaluable)",
+      "why_task_unknown": "horizon_kind=segment (rollout 0.766 s vs assumed task horizon 8.0 s); predicates unmet but inconclusive: ['lift', 'inside_tray', 'release_settle']; not evaluable: []"
+    },
+    {
+      "category": "unknown",
+      "index": 2,
+      "safety_reasons": [],
+      "safety_status": "clean",
+      "seed": 3241444873,
+      "simulation_completed": true,
+      "task_status": "unknown (not evaluable)",
+      "why_task_unknown": "horizon_kind=segment (rollout 0.766 s vs assumed task horizon 8.0 s); predicates unmet but inconclusive: ['lift', 'inside_tray', 'release_settle']; not evaluable: []"
+    },
+    {
+      "category": "unknown",
+      "index": 3,
+      "safety_reasons": [],
+      "safety_status": "clean",
+      "seed": 3685993406,
+      "simulation_completed": true,
+      "task_status": "unknown (not evaluable)",
+      "why_task_unknown": "horizon_kind=segment (rollout 0.766 s vs assumed task horizon 8.0 s); predicates unmet but inconclusive: ['lift', 'inside_tray', 'release_settle']; not evaluable: []"
+    },
+    {
+      "category": "unknown",
+      "index": 4,
+      "safety_reasons": [],
+      "safety_status": "clean",
+      "seed": 1216546553,
+      "simulation_completed": true,
+      "task_status": "unknown (not evaluable)",
+      "why_task_unknown": "horizon_kind=segment (rollout 0.766 s vs assumed task horizon 8.0 s); predicates unmet but inconclusive: ['lift', 'inside_tray', 'release_settle']; not evaluable: []"
+    },
+    {
+      "category": "unknown",
+      "index": 5,
+      "safety_reasons": [],
+      "safety_status": "clean",
+      "seed": 2078861726,
+      "simulation_completed": true,
+      "task_status": "unknown (not evaluable)",
+      "why_task_unknown": "horizon_kind=segment (rollout 0.766 s vs assumed task horizon 8.0 s); predicates unmet but inconclusive: ['lift', 'inside_tray', 'release_settle']; not evaluable: []"
+    },
+    {
+      "category": "unknown",
+      "index": 6,
+      "safety_reasons": [],
+      "safety_status": "clean",
+      "seed": 2471122328,
+      "simulation_completed": true,
+      "task_status": "unknown (not evaluable)",
+      "why_task_unknown": "horizon_kind=segment (rollout 0.766 s vs assumed task horizon 8.0 s); predicates unmet but inconclusive: ['lift', 'inside_tray', 'release_settle']; not evaluable: []"
+    },
+    {
+      "category": "unknown",
+      "index": 7,
+      "safety_reasons": [],
+      "safety_status": "clean",
+      "seed": 23012616,
+      "simulation_completed": true,
+      "task_status": "unknown (not evaluable)",
+      "why_task_unknown": "horizon_kind=segment (rollout 0.766 s vs assumed task horizon 8.0 s); predicates unmet but inconclusive: ['lift', 'inside_tray', 'release_settle']; not evaluable: []"
+    },
+    {
+      "category": "unknown",
+      "index": 8,
+      "safety_reasons": [],
+      "safety_status": "clean",
+      "seed": 3031610183,
+      "simulation_completed": true,
+      "task_status": "unknown (not evaluable)",
+      "why_task_unknown": "horizon_kind=segment (rollout 0.766 s vs assumed task horizon 8.0 s); predicates unmet but inconclusive: ['lift', 'inside_tray', 'release_settle']; not evaluable: []"
+    },
+    {
+      "category": "unknown",
+      "index": 9,
+      "safety_reasons": [],
+      "safety_status": "clean",
+      "seed": 2976135721,
+      "simulation_completed": true,
+      "task_status": "unknown (not evaluable)",
+      "why_task_unknown": "horizon_kind=segment (rollout 0.766 s vs assumed task horizon 8.0 s); predicates unmet but inconclusive: ['lift', 'inside_tray', 'release_settle']; not evaluable: []"
+    }
+  ],
+  "predicates_evaluated": [
+    "constraints",
+    "contacts",
+    "lift",
+    "inside_tray",
+    "release_settle"
+  ],
+  "reason_codes": [
+    "task_outcome_unavailable",
+    "status_INSUFFICIENT_EVIDENCE"
+  ],
+  "simulation_completed": 10,
+  "status": "INSUFFICIENT_EVIDENCE"
+}

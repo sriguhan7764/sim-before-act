@@ -1,0 +1,110 @@
+# Real-hardware configuration. Anything not discoverable is left null and is NEVER guessed.
+# Lengths: *_m metres, *_mm millimetres. Times: *_ms milliseconds.
+config_version: 1
+mode: diagnostic            # diagnostic (flags issues) | research (readiness gates block recording)
+
+paths:
+  episodes_root: data/episodes
+  calibrations_root: data/calibrations
+
+cameras:
+  - name: front_rgbd
+    backend: realsense
+    serial: '844212071704'  # D435I seen 2026-11-13 (USB 3.2)
+    width: 1280             # 1280x720: markers are small/oblique at 640x480 (detection unreliable)
+    height: 720
+    fps: 30                 # requested, not guaranteed
+    role: primary
+    depth: true
+    align_depth_to_color: true
+  - name: wrist
+    backend: opencv
+    device: /dev/v4l/by-id/usb-Sonix_Technology_Co.__Ltd._USB2.0_CAM1_USB2.0_CAM1-video-index0   # user-confirmed wrist cam
+    enabled: true
+    role: wrist
+    width: 640
+    height: 480
+    fps: 30
+
+robot:
+  follower:
+    backend: feetech_readonly    # PING/READ only. Use jsonl_tap if a teleop process already owns the port.
+    port: /dev/serial/by-id/usb-1a86_USB_Single_Serial_5B14030118-if00   # identified by bus voltage ~12.5 V (2026-11-12)
+    baudrate: 1000000
+    poll_hz: 100
+    calibration_file: data/robot_calibration/follower_calibration_guhan_c.json   # project-local, captured read-only 2026-11-13 (lift range likely incomplete)
+    # Names/ids follow LeRobot SOFollower (lerobot/robots/so_follower/so_follower.py). Confirm they match your arm.
+    joints:
+      - {name: shoulder_pan,  id: 1, type: revolute}
+      - {name: shoulder_lift, id: 2, type: revolute}
+      - {name: elbow_flex,    id: 3, type: revolute}
+      - {name: wrist_flex,    id: 4, type: revolute}
+      - {name: wrist_roll,    id: 5, type: revolute}
+      - {name: gripper,       id: 6, type: gripper}
+  leader:
+    backend: feetech_readonly    # identified by bus voltage ~5.4 V (2026-11-12)
+    port: /dev/serial/by-id/usb-1a86_USB_Single_Serial_5A46084050-if00
+    baudrate: 1000000
+    poll_hz: 100
+    joints:
+      - {name: shoulder_pan,  id: 1, type: revolute}
+      - {name: shoulder_lift, id: 2, type: revolute}
+      - {name: elbow_flex,    id: 3, type: revolute}
+      - {name: wrist_flex,    id: 4, type: revolute}
+      - {name: wrist_roll,    id: 5, type: revolute}
+      - {name: gripper,       id: 6, type: gripper}
+  commands:
+    backend: none                # jsonl_tap once the teleop process writes commands (docs/COEXISTENCE.md)
+    path: null
+  control_mode: null             # operator-entered description, e.g. "leader-follower position teleop"
+
+mat:
+  width_m: 0.400
+  length_m: 0.400
+  marker_centers_m:              # mat frame: origin mid near edge, +X right, +Y away from robot, +Z up
+    near_left:  [-0.180, 0.020, 0.0]
+    near_right: [ 0.180, 0.020, 0.0]
+    far_left:   [-0.180, 0.380, 0.0]
+    far_right:  [ 0.180, 0.380, 0.0]
+
+markers:
+  dictionary: DICT_4X4_50               # UNSET: e.g. DICT_4X4_50 (cv2.aruco name). Never guessed.
+  size_mm: 35.0                  # OUTER BLACK square (user-measured 2026-11-13: black 35 mm, paper 40 mm flush to mat corners)
+  size_excludes_white_margin_confirmed: true   # operator must set true after checking
+  corners:                       # printed-orientation: CCW degrees (from above) of the marker's top edge from +Y
+    # ids from detection 2026-11-13; orientations chosen by exhaustive search over 4^4 combos on one frame (best mean err 1.09 px, next best 6.96 px); confirm physically
+    near_left:  {id: 3, orientation_deg: 90}
+    near_right: {id: 1, orientation_deg: 180}
+    far_left:   {id: 2, orientation_deg: 0}
+    far_right:  {id: 0, orientation_deg: 0}
+
+calibration:
+  num_frames: 30
+  min_frames_with_all_markers: 10
+  max_reprojection_rms_px: 1.5
+  max_translation_std_mm: 2.0
+  max_rotation_std_deg: 0.3
+
+sync:
+  reference_camera: front_rgbd
+  max_state_tolerance_ms: 20.0
+  max_command_tolerance_ms: 50.0
+  max_camera_tolerance_ms: 20.0
+  interpolation: none
+
+recording:
+  queue_max_items: 256
+  overflow_policy: flag_and_drop   # or abort
+  flush_interval_s: 2.0
+  min_free_disk_gb: 5.0
+  png_compression: 1
+  auto_export: [rgb_joint_angles, rgbd_motor_positions]
+
+research_gates:
+  require_calibration_accepted: true
+  require_marker_size_confirmed: true
+  require_all_cameras_connected: true
+  require_follower_connected: true
+  require_robot_calibration_file: true
+  require_depth: true
+  forbid_mock: true

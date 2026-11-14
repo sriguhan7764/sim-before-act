@@ -1,0 +1,5 @@
+# Calibration and model evidence includes hashes of the original file bytes.
+*.json -text
+*.xml -text
+*.sha256 -text
+*.sh text eol=lf

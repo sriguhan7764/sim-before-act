@@ -1,0 +1,18 @@
+# Conversion config for REAL data later (dataset v0.1 manifest + FROZEN split). Not run on any real data yet: none qualifies.
+# python -m collector.act convert --manifest <manifest.json> --split <split.json> --out <converted_dir> --config configs/act_convert.yaml
+# Every value below is a documented choice, not a measurement; the audit records them.
+convert:
+  front_stream: null              # null -> episode.json reference_camera (front_rgbd)
+  wrist_stream: null              # set to "wrist" to feed the wrist RGB (lower rate, ~26.7 Hz measured; may be absent)
+  image_size: [480, 640]          # (H, W) of the stored/fed images; null keeps the native size. Depth is NOT used by baseline ACT.
+  max_state_age_ms: 40.0          # measured follower state: latest valid state at/before the control reference, at most this old
+  max_command_lag_ms: 50.0        # action: first command stamped at/after the reference, at most this far after it
+  wrist_max_age_ms: 50.0          # wrist frame at/before the reference, at most this old; never a staler frame
+  wrist_max_reuse: 2              # one wrist frame feeds at most this many control steps
+  wrist_missing_policy: drop_step # drop_step | mark_missing_with_mask
+  action_signal: commands.values  # controller's clipped follower target; substitutes need allow_signal_substitution: true
+  allow_signal_substitution: false
+  chunk_size: 100                 # ACT defaults
+  n_action_steps: 100
+  min_kept_steps_per_episode: 1
+  verify_master_files: true

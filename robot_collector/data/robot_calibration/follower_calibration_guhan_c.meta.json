@@ -1,0 +1,10 @@
+{
+  "created_wall_ns": 1794566249063054178,
+  "method": "operator moved joints by hand; unwrapped min/max of Present_Position (read-only); range_min/max may be <0 or >4095 when the motor wrap point lies inside the travel. wrist_roll set to full turn 0..4095 like LeRobot. Homing_Offset read from the motors, never written.",
+  "name": "follower_calibration_guhan_c",
+  "port": "/dev/serial/by-id/usb-1a86_USB_Single_Serial_5B14030118-if00",
+  "role": "follower",
+  "samples": 6001,
+  "sha256": "4df8691d37baaefc3188cb3d406b9a609e2707213563ac07aefa9064de280c96",
+  "valid_only_while": "motor homing offsets still equal the stored values (re-read and compared by validate)"
+}

@@ -1,0 +1,7 @@
+# raw recordings are large (~10 GB) and stay local; small calibration/preflight evidence is kept
+data/episodes/
+data/mock_*/
+.work_act/
+__pycache__/
+*.pyc
+.pytest_cache/

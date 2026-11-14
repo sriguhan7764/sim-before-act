@@ -1,0 +1,145 @@
+{
+  "automatic_check_failures": [
+    "only 1 frames with all markers (< 10)"
+  ],
+  "calibration_id": "cal_20261113T100846Z_e3e4391e",
+  "camera": "front_rgbd",
+  "created_wall_ns": 1794564526608007908,
+  "intrinsics": {
+    "K": [
+      [
+        615.1697998046875,
+        0,
+        318.3551940917969
+      ],
+      [
+        0,
+        615.2144165039062,
+        236.82449340820312
+      ],
+      [
+        0,
+        0,
+        1
+      ]
+    ],
+    "dist": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "distortion_model": "distortion.inverse_brown_conrady",
+    "height": 480,
+    "width": 640
+  },
+  "kind": "camera_to_mat",
+  "marker_config": {
+    "centers_m": {
+      "far_left": [
+        -0.18,
+        0.38,
+        0.0
+      ],
+      "far_right": [
+        0.18,
+        0.38,
+        0.0
+      ],
+      "near_left": [
+        -0.18,
+        0.02,
+        0.0
+      ],
+      "near_right": [
+        0.18,
+        0.02,
+        0.0
+      ]
+    },
+    "corners": {
+      "far_left": {
+        "id": 2,
+        "orientation_deg": 0
+      },
+      "far_right": {
+        "id": 0,
+        "orientation_deg": 0
+      },
+      "near_left": {
+        "id": 3,
+        "orientation_deg": 90
+      },
+      "near_right": {
+        "id": 1,
+        "orientation_deg": 180
+      }
+    },
+    "dictionary": "DICT_4X4_50",
+    "size_excludes_white_margin_confirmed": true,
+    "size_mm": 35.0
+  },
+  "operator_accepted": false,
+  "operator_note": "second-dry-run",
+  "result": {
+    "T_camera_from_mat": [
+      [
+        -0.9973201939375086,
+        0.030583792568031405,
+        -0.06646098401773567,
+        0.018804069985179337
+      ],
+      [
+        0.0635226332415531,
+        0.8126660598831285,
+        -0.579257067440778,
+        -0.14836281301151866
+      ],
+      [
+        0.036294708023473905,
+        -0.5819265475523405,
+        -0.8124310354875077,
+        0.724654583585485
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "camera_position_in_mat_m": [
+      0.0018769487529421217,
+      0.541690062901267,
+      0.5040414027255609
+    ],
+    "marker_ids_used": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "missing_marker_ids": [],
+    "naming": "p_camera = T_camera_from_mat @ p_mat",
+    "num_frames_used": 30,
+    "ok": true,
+    "reprojection": {
+      "max_px": 3.052946667207624,
+      "num_corners": 264,
+      "per_marker_rms_px": {
+        "0": 1.1981718030337623,
+        "1": 1.6071848880130695,
+        "2": 1.2197794799998827,
+        "3": 1.5958055821811694
+      },
+      "rms_px": 1.2493655967540955
+    },
+    "stability": {
+      "frames_with_all_markers": 1
+    }
+  },
+  "robot_base_to_mat": null,
+  "robot_base_to_mat_note": "NOT calibrated here; must be established separately and never inferred.",
+  "schema_version": "1.0.0"
+}

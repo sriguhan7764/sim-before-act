@@ -1,0 +1,69 @@
+schema_version: sba-config/0.1
+# SYNTHETIC / DEMO configuration. Every number marked calibrated:false is an UNCALIBRATED PLACEHOLDER,
+# not a measurement of the physical SO-101. Thresholds below are demo values, not selected on calibration data.
+
+twin:
+  scene_xml: ../../so101_mujoco/scene.xml     # read-only user asset, resolved relative to this file
+  ee_site: gripperframe
+  floor_geom: floor
+  objects:
+    cube: {body: cube, geom: cube_geom, free_joint: cube_free}
+  static_bodies: [bin]
+
+contract:
+  representation: absolute_joint_position_targets
+  control_hz: 30
+  interpolation: zero_order_hold          # or: linear
+  min_chunk_len: 1
+  max_chunk_len: 200
+  max_joint_speed_deg_s: null             # null => speed check NOT performed (reported in trace)
+  gripper_mapping:                        # UNVALIDATED assumption, see docs/ACTION_CONTRACT.md
+    kind: linear_0_100_to_mjcf_joint_range
+    zero_means: closed_at_lower_joint_limit
+    validated: false
+
+rollout:
+  settle_s: 0.5
+  rollout_timeout_s: 30.0
+  predicate_check_every_substeps: 5
+  contact_dist_threshold_m: 0.0
+  watch_static_collisions: true
+  init_limit_tolerance_deg: 2.0
+  init_penetration_m: 0.002
+  workspace_m: {x: [-0.10, 0.45], y: [-0.30, 0.30], z: [-0.005, 0.60]}   # robot-base frame; placeholder bounds
+  check_object_displacement: null          # metres; null => predicate disabled
+  task_objects: [cube]
+
+state:
+  max_state_age_s: 0.5                     # placeholder; must be justified from measured latency
+  require_objects: [cube]
+  object_frame: robot_base
+  permitted_state_deviation_deg: 3.0       # approval binding (future pipelining); placeholder
+
+perturbations:
+  enabled: true
+  variables:
+    robot_state_error_deg: {dist: normal, sigma: 0.5, bound: 1.5, units: degrees, applies_to: 5 arm joints,
+                            source: "placeholder - NOT measured (needs encoder-vs-reference calibration)", calibrated: false}
+    object_xy_m:           {dist: normal, sigma: 0.003, bound: 0.01, units: metres, applies_to: object x,y,
+                            source: "placeholder - NOT measured (needs pose-estimation error study)", calibrated: false}
+    object_yaw_deg:        {dist: normal, sigma: 3.0, bound: 10.0, units: degrees, applies_to: object yaw,
+                            source: "placeholder - NOT measured", calibrated: false}
+    friction_scale:        {dist: uniform, low: 0.8, high: 1.2, units: multiplier, applies_to: cube sliding friction,
+                            source: "placeholder - NOT measured", calibrated: false}
+    control_noise_deg:     {dist: normal, sigma: 0.2, bound: 0.6, units: degrees, applies_to: per-step arm target noise,
+                            source: "placeholder - NOT measured (controller execution noise)", calibrated: false}
+
+verification:
+  n_rollouts: 10                           # study budgets: 1, 3, 5, 10, 25, 50
+  base_seed: 20260101
+  min_valid_fraction: 0.5                  # assumption: fraction of valid rollouts needed for COMPLETED
+  verification_timeout_s: 120.0
+  interval: {method: wilson, confidence: 0.95}   # Monte-Carlo sampling error only, NOT simulator model error
+  horizon: action_chunk_plus_settle
+
+gate:
+  risk_threshold: 0.3                      # DEMO ONLY, uncalibrated; null => always REJECT (fail closed)
+  threshold_calibrated: false
+  approval_validity_s: 1.0
+  reject_on_safety_violation_fraction: null

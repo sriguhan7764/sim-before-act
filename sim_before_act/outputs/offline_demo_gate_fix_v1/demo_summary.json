@@ -1,0 +1,119 @@
+{
+  "approval_scope": "none",
+  "banner": "SYNTHETIC OFFLINE DEMONSTRATION - invented fixture data and a random-init smoke-test policy. Not recorded physical data, not physically evaluated, not a thesis finding. No hardware was opened.",
+  "base_seed": 0,
+  "counts": {
+    "invalid_rollout": 0,
+    "safety_violation": 0,
+    "task_failure": 0,
+    "task_success": 0,
+    "timeout": 0,
+    "unknown": 10
+  },
+  "data_origin": "synthetic",
+  "decision_meaning": "WOULD_EXECUTE / WOULD_REJECT only; nothing executed",
+  "denominators": {
+    "all_rollouts": 10,
+    "determined": 0,
+    "excluded_from_fraction": {
+      "invalid": 0,
+      "timeout": 0,
+      "undetermined_valid": 10
+    },
+    "safety_evaluable": 10,
+    "task_evaluable": 0,
+    "used_for_fraction": "none (fraction withheld)",
+    "valid": 10
+  },
+  "evidence_summary": "safety evaluable 10/10 (0 violating); task evaluable 0/10 (0 success, 0 failure, 10 unknown); determined for required ['safety', 'task']: 0/10; need >= 8",
+  "fixture_verification_all_expectations_met": true,
+  "gate_status": "INSUFFICIENT_EVIDENCE",
+  "hardware": {
+    "cameras_opened": false,
+    "robot_session": false,
+    "serial_opened": false
+  },
+  "n_rollouts": 10,
+  "offline_decision_label": "WOULD_REJECT",
+  "output_dir": "/home/apic3/guhan_c/sim_before_act/outputs/offline_demo_gate_fix_v1",
+  "physically_evaluated": false,
+  "policy": "ACT smoke test (random-init, few CPU steps, trained_for_task=false)",
+  "recorded_physical_data_used": false,
+  "steps": [
+    {
+      "detail": "4 SYNTHETIC fixture episodes; roles=['synthetic_fixture']; split data_origin=synthetic_fixture frozen=False",
+      "status": "OK",
+      "step": "fixture"
+    },
+    {
+      "detail": "validate, inventory, offline replay and both export profiles on a SYNTHETIC fixture episode",
+      "exit_codes": {
+        "export_rgb_joint_angles": 0,
+        "export_rgbd_motor_positions": 0,
+        "inventory": 0,
+        "replay": 0,
+        "validate": 0
+      },
+      "status": "OK",
+      "step": "collector_validate_replay_export"
+    },
+    {
+      "detail": "ACT smoke test (random-init, few CPU steps, trained_for_task=false)",
+      "policy_kind": "smoke_random_init_few_steps",
+      "segment": "/home/apic3/guhan_c/sim_before_act/outputs/offline_demo_gate_fix_v1/03_act_smoke/action_segment.json",
+      "status": "OK",
+      "step": "policy_segment",
+      "trained_for_task": false
+    },
+    {
+      "detail": "integration ran (policy: ACT smoke test (random-init, few CPU steps, trained_for_task=false)). Gate status=INSUFFICIENT_EVIDENCE decision=REJECT (WOULD_REJECT, scope=none); safety evaluable 10/10 (0 violating); task evaluable 0/10 (0 success, 0 failure, 10 unknown); determined for required ['safety', 'task']: 0/10; need >= 8; reasons=['task_outcome_unavailable', 'status_INSUFFICIENT_EVIDENCE']. A rejection or insufficient-evidence result here is an honest integration outcome, not a step failure",
+      "gate_status": "INSUFFICIENT_EVIDENCE",
+      "status": "OK",
+      "step": "A_act_smoke_verification",
+      "visualisation": {
+        "contact_sheet": {
+          "attempts": [
+            "egl: ok"
+          ],
+          "png": "/home/apic3/guhan_c/sim_before_act/outputs/offline_demo_gate_fix_v1/04_verification/rollout0_contact_sheet.png",
+          "renderer": "egl"
+        },
+        "plot": "/home/apic3/guhan_c/sim_before_act/outputs/offline_demo_gate_fix_v1/04_verification/rollout0_plot.png"
+      }
+    },
+    {
+      "detail": "N=1/5/10, same cases and base seed, seeds nested",
+      "rows": 9,
+      "status": "OK",
+      "step": "budget_study"
+    },
+    {
+      "detail": "B1_hold_pose_safety_only_scope: COMPLETED/WOULD_EXECUTE; B2_hold_pose_task_horizon_reached: COMPLETED/REJECT; B3_known_constraint_violation: COMPLETED/REJECT; B4_insufficient_evidence: INSUFFICIENT_EVIDENCE/REJECT; B5_all_rollouts_invalid: INSUFFICIENT_VALID_ROLLOUTS/REJECT. SYNTHETIC fixtures, not ACT output",
+      "fixture_file": "/home/apic3/guhan_c/sim_before_act/outputs/offline_demo_gate_fix_v1/05b_synthetic_verification_fixtures/fixture_verification.json",
+      "status": "OK",
+      "step": "B_synthetic_verification_fixtures"
+    },
+    {
+      "detail": "synthetic prediction persisted + 'not_executed' annotation; no outcome exists",
+      "status": "OK",
+      "step": "shadow_record"
+    },
+    {
+      "detail": "review report + dataset card written (/home/apic3/guhan_c/sim_before_act/outputs/offline_demo_gate_fix_v1/07_report/review_report.md)",
+      "status": "OK",
+      "step": "report"
+    }
+  ],
+  "verification_decision": "REJECT",
+  "visualisation": {
+    "contact_sheet": {
+      "attempts": [
+        "egl: ok"
+      ],
+      "png": "/home/apic3/guhan_c/sim_before_act/outputs/offline_demo_gate_fix_v1/04_verification/rollout0_contact_sheet.png",
+      "renderer": "egl"
+    },
+    "plot": "/home/apic3/guhan_c/sim_before_act/outputs/offline_demo_gate_fix_v1/04_verification/rollout0_plot.png"
+  },
+  "wall_s": 11.967986000003293
+}

@@ -1,0 +1,35 @@
+# PILOT training config (ACT defaults) for a later REAL run on a converted FROZEN split. NOT runnable offline:
+#  * resnet18 ImageNet weights are only used if the file is already in the local torch hub cache (refused otherwise; nothing is
+#    downloaded by this code). A resnet18-f37072fd.pth file was observed in ~/.cache/torch/hub/checkpoints; its provenance was not verified;
+#    the config/freeze record only the weight NAME, not the file hash of the backbone weights at the time of loading;
+#  * there is no qualifying real data yet; kind=main is refused on synthetic data or a provisional split;
+#  * only device=cpu is validated. No GPU/XPU support is claimed.
+# python -m collector.act train --config configs/act_pilot.yaml --converted <converted_dir> --run runs/act_pilot_001
+train:
+  kind: main
+  name: act_pilot
+  seed: 1000
+  steps: 100000
+  batch_size: 8
+  eval_every: 1000
+  device: cpu
+  optimizer_lr: 0.00001
+  optimizer_lr_backbone: 0.00001
+  optimizer_weight_decay: 0.0001
+  grad_clip_norm: 10.0
+  require_wrist: true
+model:                              # lerobot 0.6.1 ACT defaults (convert with the same chunk_size/n_action_steps)
+  chunk_size: 100
+  n_action_steps: 100
+  vision_backbone: resnet18
+  pretrained_backbone_weights: ResNet18_Weights.IMAGENET1K_V1
+  dim_model: 512
+  n_heads: 8
+  dim_feedforward: 3200
+  n_encoder_layers: 4
+  n_decoder_layers: 1
+  n_vae_encoder_layers: 4
+  latent_dim: 32
+  use_vae: true
+  kl_weight: 10.0
+  dropout: 0.1

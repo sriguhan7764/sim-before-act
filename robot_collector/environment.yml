@@ -1,0 +1,14 @@
+name: guhan_c
+channels: [conda-forge]
+dependencies:
+  - python=3.12
+  - numpy
+  - opencv>=4.8        # must include cv2.aruco (ArucoDetector)
+  - pyyaml
+  - pyserial
+  - pillow
+  - pytest
+  - tk                 # desktop preview
+  - pip
+  - pip:
+      - pyrealsense2   # RealSense D435 SDK (wheel from PyPI)

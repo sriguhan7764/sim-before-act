@@ -1,0 +1,26 @@
+# Which robot calibration files are ACTIVE and which are STALE/superseded. Paths are relative to robot_collector/.
+# Files are never modified or deleted; the registry only says which ones the collector may use.
+# The preflight and recorder refuse a config whose follower/leader calibration_file is not the active entry
+# (path AND sha256), and refuse any file whose hash is listed under stale. Recordings made with a stale file are never
+# reinterpreted with an active one (each episode carries its own calibration copy + hash).
+registry_version: 1
+active:
+  follower:
+    path: ../lerobot_setup/calibration/follower/g_c_follower_calibration.json
+    sha256: 99548f7356a3b69e74848158195f5db322b533bf65284ae83d623ed42e4406d8
+    provenance: user-made with LeRobot SO-101 calibration (id g_c_follower_calibration); homing offsets of all 6 follower motors were compared with this file on 2026-11-13 (read-only) and matched. Re-checked at every bridge start.
+  leader:
+    path: ../lerobot_setup/calibration/leader/g_c_leader_calibration.json
+    sha256: 9eba342b9c2963588d6131c65b95d089ce4d46269725ae4e64646a3c416c385a
+    provenance: user-made with LeRobot SO-101 calibration (id g_c_leader_calibration); homing offsets of all 6 leader motors matched on 2026-11-13 (read-only). Re-checked at every bridge start.
+stale:
+  - path: data/robot_calibration/follower_calibration_guhan_c.json
+    sha256: 4df8691d37baaefc3188cb3d406b9a609e2707213563ac07aefa9064de280c96
+    reason: captured by this collector before the user's LeRobot calibration; the motors' homing offsets were rewritten afterwards, so its raw-tick space no longer matches the hardware.
+    affects_episodes: [ep_20261113T101447Z_83f1ba, ep_20261113T101628Z_f3cde4, ep_20261113T104200Z_e68da4]
+  - path: ../lerobot_setup/calibration/leader/leader_guhan_c.json
+    sha256: 0cf8956e7adffaf2f0210912c948a3686df4e84af15b6c326d61a36b55d90696
+    reason: earlier leader calibration attempt with bad ranges (shoulder_lift 91 ticks, wrapped elbow); kept as evidence.
+  - path: ../lerobot_setup/calibration/follower/follower.json
+    sha256: e8c4d0249e03f71f4b46cd73065ff9b21d96eaef20193113b6bed18c373920ba
+    reason: provenance unknown (copy of an earlier LeRobot cache file); not the user's g_c calibration; not used.

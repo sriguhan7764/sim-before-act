@@ -1,0 +1,25 @@
+# MOCK / dry-run configuration: synthetic data only. Never use for real collection.
+config_version: 1
+mode: diagnostic
+paths:
+  episodes_root: data/mock_episodes
+  calibrations_root: data/mock_calibrations
+cameras:
+  - {name: mock_rgbd, backend: mock, width: 64, height: 48, fps: 30, role: primary, depth: true}
+robot:
+  follower:
+    backend: mock
+    poll_hz: 100
+    calibration_file: configs/mock_motor_calibration.json
+    joints:
+      - {name: shoulder_pan,  id: 1, type: revolute}
+      - {name: shoulder_lift, id: 2, type: revolute}
+      - {name: elbow_flex,    id: 3, type: revolute}
+      - {name: wrist_flex,    id: 4, type: revolute}
+      - {name: wrist_roll,    id: 5, type: revolute}
+      - {name: gripper,       id: 6, type: gripper}
+  commands: {backend: mock}
+sync:
+  reference_camera: mock_rgbd
+recording:
+  min_free_disk_gb: 0.1

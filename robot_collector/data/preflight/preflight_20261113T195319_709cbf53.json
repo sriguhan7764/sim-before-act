@@ -1,0 +1,539 @@
+{
+  "calibration_files": [
+    {
+      "detail": "g_c_follower_calibration.json sha256 99548f7356a3b69e...",
+      "name": "follower calibration file is the ACTIVE one",
+      "status": "PASS"
+    },
+    {
+      "detail": "g_c_leader_calibration.json sha256 9eba342b9c296358...",
+      "name": "leader calibration file is the ACTIVE one",
+      "status": "PASS"
+    }
+  ],
+  "cameras": {
+    "front_rgbd": {
+      "color_profiles_at_requested_resolution": [
+        {
+          "format": "bgr8",
+          "fps": 15,
+          "height": 480,
+          "width": 640
+        },
+        {
+          "format": "bgr8",
+          "fps": 30,
+          "height": 480,
+          "width": 640
+        },
+        {
+          "format": "bgr8",
+          "fps": 6,
+          "height": 480,
+          "width": 640
+        },
+        {
+          "format": "bgr8",
+          "fps": 60,
+          "height": 480,
+          "width": 640
+        },
+        {
+          "format": "bgra8",
+          "fps": 15,
+          "height": 480,
+          "width": 640
+        },
+        {
+          "format": "bgra8",
+          "fps": 30,
+          "height": 480,
+          "width": 640
+        },
+        {
+          "format": "bgra8",
+          "fps": 6,
+          "height": 480,
+          "width": 640
+        },
+        {
+          "format": "bgra8",
+          "fps": 60,
+          "height": 480,
+          "width": 640
+        },
+        {
+          "format": "rgb8",
+          "fps": 15,
+          "height": 480,
+          "width": 640
+        },
+        {
+          "format": "rgb8",
+          "fps": 30,
+          "height": 480,
+          "width": 640
+        },
+        {
+          "format": "rgb8",
+          "fps": 6,
+          "height": 480,
+          "width": 640
+        },
+        {
+          "format": "rgb8",
+          "fps": 60,
+          "height": 480,
+          "width": 640
+        },
+        {
+          "format": "rgba8",
+          "fps": 15,
+          "height": 480,
+          "width": 640
+        },
+        {
+          "format": "rgba8",
+          "fps": 30,
+          "height": 480,
+          "width": 640
+        },
+        {
+          "format": "rgba8",
+          "fps": 6,
+          "height": 480,
+          "width": 640
+        },
+        {
+          "format": "rgba8",
+          "fps": 60,
+          "height": 480,
+          "width": 640
+        },
+        {
+          "format": "yuyv",
+          "fps": 15,
+          "height": 480,
+          "width": 640
+        },
+        {
+          "format": "yuyv",
+          "fps": 30,
+          "height": 480,
+          "width": 640
+        },
+        {
+          "format": "yuyv",
+          "fps": 6,
+          "height": 480,
+          "width": 640
+        },
+        {
+          "format": "yuyv",
+          "fps": 60,
+          "height": 480,
+          "width": 640
+        }
+      ],
+      "color_supported_alone": true,
+      "combination_resolvable": true,
+      "depth_profiles_at_requested_resolution": [
+        {
+          "format": "z16",
+          "fps": 15,
+          "height": 480,
+          "width": 640
+        },
+        {
+          "format": "z16",
+          "fps": 30,
+          "height": 480,
+          "width": 640
+        },
+        {
+          "format": "z16",
+          "fps": 6,
+          "height": 480,
+          "width": 640
+        },
+        {
+          "format": "z16",
+          "fps": 60,
+          "height": 480,
+          "width": 640
+        },
+        {
+          "format": "z16",
+          "fps": 90,
+          "height": 480,
+          "width": 640
+        }
+      ],
+      "depth_supported_alone": true,
+      "device": {
+        "firmware_version": "5.10.13",
+        "name": "RealSense D435I",
+        "physical_port": "/sys/devices/pci0000:00/0000:00:14.0/usb4/4-1/4-1:1.0/video4linux/video0",
+        "serial_number": "844212071704",
+        "usb_type_descriptor": "3.2"
+      },
+      "found": true,
+      "note": "supported-profile enumeration only; the profile actually negotiated is verified when the stream starts and a mismatch aborts the episode",
+      "requested": {
+        "color": {
+          "format": "rgb8",
+          "fps": 30,
+          "height": 480,
+          "width": 640
+        },
+        "depth": {
+          "format": "z16",
+          "fps": 30,
+          "height": 480,
+          "width": 640
+        }
+      },
+      "resolved_without_streaming": {
+        "color": {
+          "format": "rgb8",
+          "fps": 30,
+          "height": 480,
+          "width": 640
+        },
+        "depth": {
+          "format": "z16",
+          "fps": 30,
+          "height": 480,
+          "width": 640
+        }
+      },
+      "sdk": {
+        "pyrealsense2": "2.59.1"
+      },
+      "supported": true
+    },
+    "wrist": {
+      "checked": true,
+      "formats": {
+        "MJPG": {
+          "640x480": [
+            30.0,
+            25.0,
+            20.0,
+            15.0,
+            10.0,
+            5.0
+          ]
+        },
+        "YUYV": {
+          "640x480": [
+            30.0,
+            25.0,
+            20.0,
+            15.0,
+            10.0,
+            5.0
+          ]
+        }
+      },
+      "note": "enumeration via v4l2-ctl; the negotiated format is recorded when the stream opens (OpenCV may pick any listed format)",
+      "supported": true,
+      "supported_by_format": {
+        "MJPG": true,
+        "YUYV": true
+      }
+    }
+  },
+  "effective_config_sha256": "709cbf5310abf948be61b457c943e70d28c02785c3f6f82539795099e8390253",
+  "opened_streams": {
+    "front_rgbd": {
+      "color_device_timestamp_ms": {
+        "duplicates": 0,
+        "gaps": 2533.834228515625,
+        "n": 79,
+        "non_monotonic": 0
+      },
+      "color_frame_number": {
+        "duplicates": 0,
+        "gaps": 0,
+        "n": 79,
+        "non_monotonic": 0
+      },
+      "depth_aligned": {
+        "depth_scale": 0.0010000000474974513,
+        "format": "z16",
+        "geometry": "colour image (rs.align(color) applied to the native frame)",
+        "height": 480,
+        "intrinsics": {
+          "K": [
+            [
+              615.1697998046875,
+              0,
+              318.3551940917969
+            ],
+            [
+              0,
+              615.2144165039062,
+              236.82449340820312
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "dist": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "distortion_model": "distortion.inverse_brown_conrady",
+          "height": 480,
+          "width": 640
+        },
+        "invalid_value": 0,
+        "provenance": "derived from native depth by the RealSense SDK; resampled, so it is not an independent measurement. Intrinsics = colour stream intrinsics.",
+        "units": "metres_per_unit",
+        "width": 640
+      },
+      "depth_device_timestamp_ms": {
+        "duplicates": 1,
+        "gaps": 2524.251708984375,
+        "n": 79,
+        "non_monotonic": 0
+      },
+      "depth_frame_number": {
+        "duplicates": 1,
+        "gaps": 1,
+        "n": 79,
+        "non_monotonic": 0
+      },
+      "depth_native": {
+        "depth_scale": 0.0010000000474974513,
+        "extrinsics_to_color": {
+          "note": "maps depth-sensor-frame points into colour-sensor frame",
+          "rotation_row_major": [
+            0.9999201893806458,
+            -0.01009498629719019,
+            -0.007596799172461033,
+            0.01009045634418726,
+            0.9999488592147827,
+            -0.0006344454595819116,
+            0.007602815516293049,
+            0.0005577396950684488,
+            0.9999709129333496
+          ],
+          "translation_m": [
+            0.014749500900506973,
+            9.578066237736493e-05,
+            0.0003352966741658747
+          ]
+        },
+        "format": "z16",
+        "fps": 30,
+        "geometry": "depth-sensor image",
+        "height": 480,
+        "intrinsics": {
+          "K": [
+            [
+              384.787109375,
+              0,
+              320.34619140625
+            ],
+            [
+              0,
+              384.787109375,
+              235.22802734375
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          "dist": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "distortion_model": "distortion.brown_conrady",
+          "height": 480,
+          "width": 640
+        },
+        "invalid_value": 0,
+        "units": "metres_per_unit",
+        "width": 640
+      },
+      "device": {
+        "firmware_version": "5.10.13",
+        "name": "RealSense D435I",
+        "physical_port": "/sys/devices/pci0000:00/0000:00:14.0/usb4/4-1/4-1:1.0/video4linux/video0",
+        "product_id": "0B3A",
+        "serial_number": "844212071704",
+        "usb_type_descriptor": "3.2"
+      },
+      "frame_shapes_dtypes": {
+        "color": [
+          [
+            480,
+            640,
+            3
+          ],
+          "uint8"
+        ],
+        "depth_aligned": [
+          [
+            480,
+            640
+          ],
+          "uint16"
+        ],
+        "depth_native": [
+          [
+            480,
+            640
+          ],
+          "uint16"
+        ]
+      },
+      "frames": 79,
+      "host_dt_ms": {
+        "max": 34.785628,
+        "p50": 33.488096999999996
+      },
+      "host_receipt": {
+        "duplicates": 0,
+        "gaps": 2609080582,
+        "n": 79,
+        "non_monotonic": 0
+      },
+      "invalid_depth_fraction_aligned_mean": 0.03290393426951476,
+      "invalid_depth_fraction_native_mean": 0.09536730287447256,
+      "measured_rate_hz": 29.895587819810828,
+      "negotiation": {
+        "actual": {
+          "color": {
+            "format": "rgb8",
+            "fps": 30,
+            "height": 480,
+            "width": 640
+          },
+          "depth": {
+            "format": "z16",
+            "fps": 30,
+            "height": 480,
+            "width": 640
+          }
+        },
+        "matches_request": true,
+        "mismatches": {},
+        "note": "a mismatch raises ProfileMismatch before any frame is recorded; nothing is substituted",
+        "requested": {
+          "color": {
+            "format": "rgb8",
+            "fps": 30,
+            "height": 480,
+            "width": 640
+          },
+          "depth": {
+            "format": "z16",
+            "fps": 30,
+            "height": 480,
+            "width": 640
+          }
+        },
+        "silent_substitution": false
+      },
+      "opened": true,
+      "read_timeouts_or_none": 0,
+      "timestamp_domains": [
+        "timestamp_domain.global_time"
+      ]
+    },
+    "wrist": {
+      "color_device_timestamp_ms": {
+        "duplicates": 0,
+        "gaps": 0,
+        "n": 0,
+        "non_monotonic": 0
+      },
+      "color_frame_number": {
+        "duplicates": 0,
+        "gaps": 0,
+        "n": 0,
+        "non_monotonic": 0
+      },
+      "depth_aligned": null,
+      "depth_device_timestamp_ms": {
+        "duplicates": 0,
+        "gaps": 0,
+        "n": 0,
+        "non_monotonic": 0
+      },
+      "depth_frame_number": {
+        "duplicates": 0,
+        "gaps": 0,
+        "n": 0,
+        "non_monotonic": 0
+      },
+      "depth_native": null,
+      "device": {
+        "path_or_index": "/dev/v4l/by-id/usb-Sonix_Technology_Co.__Ltd._USB2.0_CAM1_USB2.0_CAM1-video-index0"
+      },
+      "frame_shapes_dtypes": {
+        "color": [
+          [
+            480,
+            640,
+            3
+          ],
+          "uint8"
+        ]
+      },
+      "frames": 67,
+      "host_dt_ms": {
+        "max": 40.836103,
+        "p50": 36.206385499999996
+      },
+      "host_receipt": {
+        "duplicates": 0,
+        "gaps": 2471654161,
+        "n": 67,
+        "non_monotonic": 0
+      },
+      "invalid_depth_fraction_aligned_mean": null,
+      "invalid_depth_fraction_native_mean": null,
+      "measured_rate_hz": 26.70276419695982,
+      "negotiation": {
+        "actual": {
+          "color": {
+            "format": "YUYV",
+            "fps": 30.0,
+            "height": 480,
+            "width": 640
+          }
+        },
+        "matches_request": true,
+        "mismatches": {},
+        "note": "a mismatch raises ProfileMismatch before any frame is recorded; nothing is substituted",
+        "requested": {
+          "color": {
+            "fps": 30,
+            "height": 480,
+            "width": 640
+          }
+        },
+        "silent_substitution": false
+      },
+      "opened": true,
+      "read_timeouts_or_none": 0,
+      "timestamp_domains": [
+        "None"
+      ]
+    }
+  }
+}

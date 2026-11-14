@@ -1,0 +1,549 @@
+{
+  "action": {
+    "action_sha256": "bedf3dae8ad9dfb1b5559846f87221676704b67a36ad1e05bd8200b99edc2a07",
+    "chunk_length": 45,
+    "comparison_exact": true,
+    "contract_id": "e7e380119f5ee4d5c00679a9e9032a45a7b6b91e4a8d90cdede5f0faa3929111",
+    "control_noise_applied": true,
+    "ctrl_range_clamp_possible": false,
+    "executed_prefix_sha256": "bedf3dae8ad9dfb1b5559846f87221676704b67a36ad1e05bd8200b99edc2a07",
+    "executed_steps": 45,
+    "execution_horizon_steps": 45,
+    "initial_state_deg": [
+      0.0,
+      -50.0,
+      40.0,
+      50.0,
+      0.0,
+      40.0
+    ],
+    "initial_state_source": "scene inputs.initial_robot.values",
+    "segment_id": "fixture_small_motion",
+    "sim_targets_sha256": "b0085ac140f1d49692b4f75b2aef5ee70c47f2716230d234177169116914ad28",
+    "source": "segment",
+    "unmodified_after_run": true
+  },
+  "detail": "",
+  "labels": {
+    "controller": "Targets are absolute joint-position targets, NOT torques. The twin tracks them with MuJoCo position actuators (kp/kv PD + forcerange from the CAD-derived MJCF); this is NOT the Feetech STS3215 controller dynamics.",
+    "data_origin": "synthetic_fixture",
+    "geometry": "CAD geometry; NOT a physically calibrated twin",
+    "mode": "synthetic_demo",
+    "policy": "NOT A TRAINED POLICY: kind=fixture_stub, trained_for_task=False (smoke/fixture output; no task competence implied)",
+    "scene": "SYNTHETIC DEMO SCENE (invented values, CAD geometry; not a calibrated twin)",
+    "segment": "[data_origin=synthetic_fixture] SYNTHETIC TEST FIXTURE: invented actions (small_motion); not policy output, not recorded data | NOT A TRAINED POLICY: kind=fixture_stub, trained_for_task=False (smoke/fixture output; no task competence implied)",
+    "segment_flags": [
+      "untrained_policy: output of a smoke/fixture policy; must NOT be reported as a trained policy",
+      "synthetic_fixture: invented/synthetic data; not evidence about the physical robot"
+    ],
+    "thresholds": "ASSUMED_UNCALIBRATED: outcome thresholds are assumptions, not calibrated tolerances"
+  },
+  "outcome": {
+    "category": "unknown",
+    "horizon_kind": "segment",
+    "horizon_s": 2.0000000000000013,
+    "invalid_reason": null,
+    "note": "segment horizon: the rollout is shorter than the assumed task horizon, so unmet predicates (lift, inside_tray) are NOT evaluable as failures",
+    "predicates_not_evaluable": [],
+    "predicates_observed_true": [
+      "release_settle"
+    ],
+    "predicates_unmet_but_inconclusive": [
+      "lift",
+      "inside_tray"
+    ],
+    "safety_reasons": [],
+    "safety_violation": false,
+    "task_failure_reasons": [],
+    "task_horizon_s": 8.0,
+    "task_outcome": "unknown",
+    "threshold_status": "ASSUMED_UNCALIBRATED",
+    "timeout": false
+  },
+  "perturbation": {
+    "all_calibrated": false,
+    "mode": "sampled",
+    "ranges_checked": true,
+    "sample": {
+      "control_noise_deg_rms": 0.18346705826819928,
+      "friction_scale": 1.0753382143960164,
+      "index": 0,
+      "nominal": false,
+      "object_xy_m": [
+        -0.00033884064530805946,
+        0.0016939207603584056
+      ],
+      "object_yaw_deg": -0.4764395388020075,
+      "state_error_deg": [
+        0.2619694521806755,
+        0.02452475823337816,
+        -0.19381576663338,
+        0.7517161404222282,
+        0.7922051718114059
+      ]
+    },
+    "sampler": {
+      "all_calibrated": false,
+      "base_seed": 3,
+      "enabled": true,
+      "seeding": "SeedSequence(base_seed).spawn(max_rollouts)[i]",
+      "unsupported_by_design": [
+        "camera pixel noise (needs a perception pipeline)",
+        "action perturbation (separate candidates)",
+        "actuator gain/response (not implemented in this slice)"
+      ],
+      "variables": {
+        "control_noise_deg": {
+          "applies_to": "per-step arm target noise",
+          "bound": 0.6,
+          "calibrated": false,
+          "dist": "normal",
+          "sigma": 0.2,
+          "source": "placeholder - NOT measured",
+          "units": "degrees"
+        },
+        "friction_scale": {
+          "applies_to": "cube sliding friction",
+          "calibrated": false,
+          "dist": "uniform",
+          "high": 1.2,
+          "low": 0.8,
+          "source": "placeholder - NOT measured",
+          "units": "multiplier"
+        },
+        "object_xy_m": {
+          "applies_to": "cube x y",
+          "bound": 0.01,
+          "calibrated": false,
+          "dist": "normal",
+          "sigma": 0.003,
+          "source": "placeholder - NOT measured",
+          "units": "metres"
+        },
+        "object_yaw_deg": {
+          "applies_to": "cube yaw",
+          "bound": 10.0,
+          "calibrated": false,
+          "dist": "normal",
+          "sigma": 3.0,
+          "source": "placeholder - NOT measured",
+          "units": "degrees"
+        },
+        "robot_state_error_deg": {
+          "applies_to": "5 arm joints",
+          "bound": 1.5,
+          "calibrated": false,
+          "dist": "normal",
+          "sigma": 0.5,
+          "source": "placeholder - NOT measured",
+          "units": "degrees"
+        }
+      }
+    },
+    "seed": 3
+  },
+  "predicates": {
+    "constraints": {
+      "evaluable": true,
+      "invalid_items": [],
+      "name": "constraint_violation",
+      "note": "",
+      "numbers": {
+        "all_finite": true,
+        "max_abs_qvel_rad_s": 1.3199628095023674,
+        "max_cube_contact_penetration_m": 8.018320825702493e-05,
+        "max_joint_limit_excess_deg": -43.98787008499151,
+        "max_noncube_penetration_m": 0.0
+      },
+      "thresholds": {
+        "joint_limit_tolerance_deg": 1.0,
+        "max_abs_qvel_rad_s": 100.0,
+        "penetration_tolerance_m": 0.005,
+        "threshold_status": "ASSUMED_UNCALIBRATED"
+      },
+      "value": false,
+      "violation_items": []
+    },
+    "contacts": {
+      "evaluable": true,
+      "name": "contact_categories",
+      "note": "value = an UNSAFE category occurred; other contacts are reported, not penalised. Sampled, transients may be missed.",
+      "numbers": {
+        "categories": {
+          "arm_cube": {
+            "first_time_s": null,
+            "max_penetration_m": 0.0,
+            "n_samples": 0,
+            "occurred": false,
+            "unsafe_by_config": false
+          },
+          "arm_mat_table": {
+            "first_time_s": null,
+            "max_penetration_m": 0.0,
+            "n_samples": 0,
+            "occurred": false,
+            "unsafe_by_config": true
+          },
+          "arm_self": {
+            "first_time_s": null,
+            "max_penetration_m": 0.0,
+            "n_samples": 0,
+            "occurred": false,
+            "unsafe_by_config": true
+          },
+          "arm_tray": {
+            "first_time_s": null,
+            "max_penetration_m": 0.0,
+            "n_samples": 0,
+            "occurred": false,
+            "unsafe_by_config": true
+          },
+          "cube_mat_table": {
+            "first_time_s": 0.0,
+            "max_penetration_m": 8.018320825702493e-05,
+            "n_samples": 201,
+            "occurred": true,
+            "unsafe_by_config": false
+          },
+          "cube_tray": {
+            "first_time_s": null,
+            "max_penetration_m": 0.0,
+            "n_samples": 0,
+            "occurred": false,
+            "unsafe_by_config": false
+          },
+          "gripper_cube": {
+            "first_time_s": null,
+            "max_penetration_m": 0.0,
+            "n_samples": 0,
+            "occurred": false,
+            "unsafe_by_config": false
+          },
+          "gripper_mat_table": {
+            "first_time_s": null,
+            "max_penetration_m": 0.0,
+            "n_samples": 0,
+            "occurred": false,
+            "unsafe_by_config": false
+          },
+          "gripper_tray": {
+            "first_time_s": null,
+            "max_penetration_m": 0.0,
+            "n_samples": 0,
+            "occurred": false,
+            "unsafe_by_config": false
+          }
+        },
+        "unsafe_categories_hit": []
+      },
+      "thresholds": {
+        "contact_dist_threshold_m": 0.0,
+        "threshold_status": "ASSUMED_UNCALIBRATED",
+        "unsafe_contact_categories": [
+          "arm_mat_table",
+          "arm_self",
+          "arm_tray"
+        ]
+      },
+      "unsafe_hit": [],
+      "value": false
+    },
+    "inside_tray": {
+      "evaluable": true,
+      "name": "cube_inside_tray",
+      "note": "cube COM inside the tray interior footprint (minus margin) and below the rim top, evaluated at the final sample",
+      "numbers": {
+        "half_x_limit_m": 0.055,
+        "half_y_limit_m": 0.045000000000000005,
+        "inside_at_any_sample": false,
+        "inside_at_end": false,
+        "u_m": -0.1603388406421099,
+        "v_m": -0.008306079191183369,
+        "z_m": 0.019919816792925663,
+        "z_range_m": [
+          0.006,
+          0.051
+        ]
+      },
+      "thresholds": {
+        "inside_tray_margin_m": 0.005,
+        "threshold_status": "ASSUMED_UNCALIBRATED"
+      },
+      "value": false
+    },
+    "lift": {
+      "evaluable": true,
+      "name": "cube_lifted",
+      "note": "cube COM above the mat top by >= lift_height at some sample",
+      "numbers": {
+        "first_time_lifted_s": null,
+        "max_com_height_above_mat_m": 0.02,
+        "rest_com_height_m": 0.02
+      },
+      "thresholds": {
+        "lift_height_m": 0.06,
+        "threshold_status": "ASSUMED_UNCALIBRATED"
+      },
+      "value": false
+    },
+    "release_settle": {
+      "evaluable": true,
+      "name": "released_and_settled",
+      "note": "gripper open beyond threshold AND cube speed below v_settle, for the trailing window of the rollout (window must reach the final sample). Gripper opening uses the UNVALIDATED 0..100 mapping.",
+      "numbers": {
+        "cube_speed_final_m_s": 2.3000472108145043e-11,
+        "gripper_cube_contact_in_window": false,
+        "gripper_pct_final": 59.99981698242129,
+        "trailing_window_s": 1.250000000000001
+      },
+      "thresholds": {
+        "gripper_open_pct": 50.0,
+        "t_settle_s": 0.3,
+        "threshold_status": "ASSUMED_UNCALIBRATED",
+        "v_settle_m_s": 0.02
+      },
+      "value": true
+    }
+  },
+  "scene": {
+    "contract_id": "e7e380119f5ee4d5c00679a9e9032a45a7b6b91e4a8d90cdede5f0faa3929111",
+    "controller": {
+      "ctrlrange_rad": [
+        [
+          -1.91986,
+          1.91986
+        ],
+        [
+          -1.74533,
+          1.74533
+        ],
+        [
+          -1.69,
+          1.69
+        ],
+        [
+          -1.65806,
+          1.65806
+        ],
+        [
+          -2.74385,
+          2.84121
+        ],
+        [
+          -0.17453,
+          1.74533
+        ]
+      ],
+      "forcerange_nm": [
+        [
+          -3.35,
+          3.35
+        ],
+        [
+          -3.35,
+          3.35
+        ],
+        [
+          -3.35,
+          3.35
+        ],
+        [
+          -3.35,
+          3.35
+        ],
+        [
+          -3.35,
+          3.35
+        ],
+        [
+          -3.35,
+          3.35
+        ]
+      ],
+      "joint_armature": [
+        0.028,
+        0.028,
+        0.028,
+        0.028,
+        0.028,
+        0.028
+      ],
+      "joint_damping": [
+        0.6,
+        0.6,
+        0.6,
+        0.6,
+        0.6,
+        0.6
+      ],
+      "joint_frictionloss": [
+        0.052,
+        0.052,
+        0.052,
+        0.052,
+        0.052,
+        0.052
+      ],
+      "kp": [
+        998.22,
+        998.22,
+        998.22,
+        998.22,
+        998.22,
+        998.22
+      ],
+      "kv": [
+        2.731,
+        2.731,
+        2.731,
+        2.731,
+        2.731,
+        2.731
+      ],
+      "note": "ACT/policy outputs are absolute joint-position TARGETS; they are written to ctrl, not applied as torques",
+      "source": "read back from the compiled robot MJCF (CAD-derived sts3215 class defaults); NOT identified from the real Feetech controller",
+      "type": "mujoco position actuators (PD): force = kp*(target-q) - kv*qdot, clipped to forcerange"
+    },
+    "engine": "mujoco",
+    "fidelity": "CAD geometry + simple primitives; NOT a physically calibrated twin",
+    "geometry": {
+      "base_to_mat": {
+        "x_m": 0.0,
+        "y_m": 0.03,
+        "yaw_deg": 90.0,
+        "z_m": 0.0
+      },
+      "cube_contact_params": {
+        "condim": 4,
+        "friction": [
+          1.5,
+          0.02,
+          0.0005
+        ],
+        "solimp": [
+          0.95,
+          0.99,
+          0.001,
+          0.5,
+          2.0
+        ],
+        "solref": [
+          0.02,
+          1.0
+        ]
+      },
+      "cube_contact_params_source": "copied from so101_mujoco/scene.xml; ASSUMED, uncalibrated",
+      "cube_mass_kg": 0.025,
+      "cube_side_m": 0.04,
+      "frame": "mat frame = world: origin midpoint of the mat edge nearest the robot, +X right (seen from robot), +Y away, +Z up",
+      "gripper_bodies": [
+        "gripper",
+        "moving_jaw_so101_v1"
+      ],
+      "mat_size_m": [
+        0.4,
+        0.4,
+        0.004
+      ],
+      "mat_top_z_m": 0.0,
+      "mat_x_range_m": [
+        -0.2,
+        0.2
+      ],
+      "mat_y_range_m": [
+        0.0,
+        0.4
+      ],
+      "robot_collision_geoms": {
+        "gripper": 2,
+        "lower_arm": 3,
+        "moving_jaw_so101_v1": 1,
+        "shoulder": 3,
+        "upper_arm": 2,
+        "wrist": 2
+      },
+      "tray_floor_top_z_m": 0.006,
+      "tray_interior_m": [
+        0.12,
+        0.1
+      ],
+      "tray_pose": {
+        "x_m": 0.1,
+        "y_m": 0.23,
+        "yaw_deg": 0.0
+      },
+      "tray_rim_height_m": 0.045,
+      "tray_rim_top_z_m": 0.051,
+      "tray_wall_thickness_m": 0.006
+    },
+    "label": "SYNTHETIC DEMO SCENE (invented values, CAD geometry; not a calibrated twin)",
+    "mode": "synthetic_demo",
+    "mujoco_version": "3.15.0",
+    "nbody": 10,
+    "ngeom": 38,
+    "nu": 6,
+    "robot_asset_hash": "62605509cc7e513ccfa68732dc47227ae08187ae581ff71a32faadbb048b6368",
+    "robot_model_xml": "/home/apic3/guhan_c/so101_mujoco/so101_new_calib.xml",
+    "scene_config_hash": "7170048988e7ca6a527868cccb22137bfb81e95514f9e7cc5a8d9cee1c85e692",
+    "timestep_s": 0.002
+  },
+  "seed": 3,
+  "sim": {
+    "control_hz": 30.0,
+    "interpolation": "zero_order_hold",
+    "n_samples": 201,
+    "sample_every_substeps": 5,
+    "settle_s": 0.5,
+    "sim_duration_s": 2.0000000000000013,
+    "substeps": 1000,
+    "timestep_s": 0.002,
+    "tracking": "MuJoCo PD position actuators (NOT the real Feetech controller)"
+  },
+  "trace_arrays": {
+    "contact_pen": [
+      201,
+      9
+    ],
+    "contact_present": [
+      201,
+      9
+    ],
+    "ctrl": [
+      201,
+      6
+    ],
+    "cube_pos": [
+      201,
+      3
+    ],
+    "cube_quat": [
+      201,
+      4
+    ],
+    "cube_speed": [
+      201
+    ],
+    "ee_pos": [
+      201,
+      3
+    ],
+    "gripper_pct": [
+      201
+    ],
+    "max_abs_qvel": [
+      201
+    ],
+    "q_rad": [
+      201,
+      6
+    ],
+    "qpos": [
+      201,
+      13
+    ],
+    "t_s": [
+      201
+    ]
+  },
+  "wall_s": 0.02259651297936216
+}

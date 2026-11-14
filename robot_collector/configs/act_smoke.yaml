@@ -1,0 +1,38 @@
+# SYNTHETIC SMOKE TEST config - software execution only, not a thesis finding.
+# Runs on the tiny fabricated fixture, CPU, random-init ACT (no pretrained weights: none can be downloaded offline), a handful of steps.
+# The model block DEVIATES from the ACT defaults (tiny transformer, tiny images, short chunk); the deviations are recorded in identity.json.
+convert:
+  wrist_stream: wrist
+  image_size: [48, 64]
+  max_state_age_ms: 40.0
+  max_command_lag_ms: 50.0
+  wrist_max_age_ms: 50.0
+  wrist_max_reuse: 2
+  wrist_missing_policy: drop_step
+  action_signal: commands.values
+  chunk_size: 8
+  n_action_steps: 8
+train:
+  kind: smoke
+  name: act_smoke
+  seed: 1000
+  steps: 6
+  batch_size: 4
+  eval_every: 2
+  device: cpu
+  optimizer_lr: 0.0001
+  optimizer_lr_backbone: 0.0001
+  optimizer_weight_decay: 0.0001
+  grad_clip_norm: 10.0
+model:
+  chunk_size: 8
+  n_action_steps: 8
+  pretrained_backbone_weights: null
+  dim_model: 32
+  n_heads: 2
+  dim_feedforward: 64
+  n_encoder_layers: 1
+  n_vae_encoder_layers: 1
+  latent_dim: 8
+  use_vae: true
+  kl_weight: 10.0

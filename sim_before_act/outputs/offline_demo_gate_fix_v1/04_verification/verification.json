@@ -1,0 +1,335 @@
+{
+  "action_sha256": "dce6489748e01ba968664f00968a00e3005aead8f23f15f3fa16eb1e76262616",
+  "approval_scope": "none",
+  "base_seed": 0,
+  "chunk_length": 8,
+  "config_hash": "25c4c1fab478485e111337ffad534fc9babcbb12f07da8e4c2ea7cada700cba5",
+  "contract_id": "e7e380119f5ee4d5c00679a9e9032a45a7b6b91e4a8d90cdede5f0faa3929111",
+  "counts": {
+    "invalid_rollout": 0,
+    "safety_violation": 0,
+    "task_failure": 0,
+    "task_success": 0,
+    "timeout": 0,
+    "unknown": 10
+  },
+  "coverage": {
+    "determined_over_all_rollouts": 0.0,
+    "note": "UNCALIBRATED placeholder; unknown/invalid/timeout rollouts are never counted as success or zero risk",
+    "required_count": 8,
+    "required_minimum": 0.8
+  },
+  "criteria": {
+    "safety": {
+      "available": true,
+      "coverage": 1.0,
+      "evaluable": 10,
+      "interval": {
+        "confidence": 0.95,
+        "lower": 0.0,
+        "method": "wilson",
+        "scope": "Monte-Carlo sampling error only; excludes simulator model error",
+        "upper": 0.2775327998628892
+      },
+      "meaning": "violation of constraints / unsafe contacts among validly-run rollouts",
+      "of": 10,
+      "violation_fraction": 0.0,
+      "violations": 0
+    },
+    "task": {
+      "available": false,
+      "coverage": 0.0,
+      "evaluable": 0,
+      "failure": 0,
+      "failure_fraction": null,
+      "interval": null,
+      "meaning": "task_success / task_failure; unknown (segment horizon shorter than task horizon, or invalid/timeout) is NOT evaluable",
+      "of": 10,
+      "success": 0,
+      "unknown": 10
+    }
+  },
+  "decision": "REJECT",
+  "denominators": {
+    "all_rollouts": 10,
+    "determined": 0,
+    "excluded_from_fraction": {
+      "invalid": 0,
+      "timeout": 0,
+      "undetermined_valid": 10
+    },
+    "safety_evaluable": 10,
+    "task_evaluable": 0,
+    "used_for_fraction": "none (fraction withheld)",
+    "valid": 10
+  },
+  "determined": 0,
+  "evidence_summary": "safety evaluable 10/10 (0 violating); task evaluable 0/10 (0 success, 0 failure, 10 unknown); determined for required ['safety', 'task']: 0/10; need >= 8",
+  "executed_steps": 8,
+  "failed": 0,
+  "horizon_claim": "segment-horizon safety/constraint observations only; NOT a full-task success prediction",
+  "interval": null,
+  "meaning": "offline decision: WOULD_EXECUTE means the uncalibrated gate would pass for the stated approval_scope; nothing was executed or sent. WOULD_REJECT (decision REJECT) includes insufficient evidence. A completed simulation is not a valid outcome observation: see criteria/denominators and sim_before_act/integration/offline_pipeline.py.",
+  "min_valid_fraction": 0.8,
+  "min_valid_note": "UNCALIBRATED placeholder: not derived from physical data",
+  "n_rollouts": 10,
+  "offline_decision_label": "WOULD_REJECT",
+  "partial_fraction_over_determined": null,
+  "ran_validly": 10,
+  "reason_codes": [
+    "task_outcome_unavailable",
+    "status_INSUFFICIENT_EVIDENCE"
+  ],
+  "required_criteria": [
+    "safety",
+    "task"
+  ],
+  "rollouts": [
+    {
+      "category": "unknown",
+      "horizon_kind": "segment",
+      "horizon_s": 0.7660000000000006,
+      "index": 0,
+      "invalid_reason": null,
+      "outcome_note": "segment horizon: the rollout is shorter than the assumed task horizon, so unmet predicates (lift, inside_tray, release_settle) are NOT evaluable as failures",
+      "predicates_not_evaluable": [],
+      "predicates_observed_true": [],
+      "predicates_unmet_but_inconclusive": [
+        "lift",
+        "inside_tray",
+        "release_settle"
+      ],
+      "safety_evaluable": true,
+      "safety_reasons": [],
+      "seed": 3757552657,
+      "task_evaluable": false,
+      "task_horizon_s": 8.0,
+      "task_outcome": "unknown",
+      "wall_s": 0.026133972016396
+    },
+    {
+      "category": "unknown",
+      "horizon_kind": "segment",
+      "horizon_s": 0.7660000000000006,
+      "index": 1,
+      "invalid_reason": null,
+      "outcome_note": "segment horizon: the rollout is shorter than the assumed task horizon, so unmet predicates (lift, inside_tray, release_settle) are NOT evaluable as failures",
+      "predicates_not_evaluable": [],
+      "predicates_observed_true": [],
+      "predicates_unmet_but_inconclusive": [
+        "lift",
+        "inside_tray",
+        "release_settle"
+      ],
+      "safety_evaluable": true,
+      "safety_reasons": [],
+      "seed": 673228719,
+      "task_evaluable": false,
+      "task_horizon_s": 8.0,
+      "task_outcome": "unknown",
+      "wall_s": 0.01100641000084579
+    },
+    {
+      "category": "unknown",
+      "horizon_kind": "segment",
+      "horizon_s": 0.7660000000000006,
+      "index": 2,
+      "invalid_reason": null,
+      "outcome_note": "segment horizon: the rollout is shorter than the assumed task horizon, so unmet predicates (lift, inside_tray, release_settle) are NOT evaluable as failures",
+      "predicates_not_evaluable": [],
+      "predicates_observed_true": [],
+      "predicates_unmet_but_inconclusive": [
+        "lift",
+        "inside_tray",
+        "release_settle"
+      ],
+      "safety_evaluable": true,
+      "safety_reasons": [],
+      "seed": 3241444873,
+      "task_evaluable": false,
+      "task_horizon_s": 8.0,
+      "task_outcome": "unknown",
+      "wall_s": 0.010969037015456706
+    },
+    {
+      "category": "unknown",
+      "horizon_kind": "segment",
+      "horizon_s": 0.7660000000000006,
+      "index": 3,
+      "invalid_reason": null,
+      "outcome_note": "segment horizon: the rollout is shorter than the assumed task horizon, so unmet predicates (lift, inside_tray, release_settle) are NOT evaluable as failures",
+      "predicates_not_evaluable": [],
+      "predicates_observed_true": [],
+      "predicates_unmet_but_inconclusive": [
+        "lift",
+        "inside_tray",
+        "release_settle"
+      ],
+      "safety_evaluable": true,
+      "safety_reasons": [],
+      "seed": 3685993406,
+      "task_evaluable": false,
+      "task_horizon_s": 8.0,
+      "task_outcome": "unknown",
+      "wall_s": 0.007994578016223386
+    },
+    {
+      "category": "unknown",
+      "horizon_kind": "segment",
+      "horizon_s": 0.7660000000000006,
+      "index": 4,
+      "invalid_reason": null,
+      "outcome_note": "segment horizon: the rollout is shorter than the assumed task horizon, so unmet predicates (lift, inside_tray, release_settle) are NOT evaluable as failures",
+      "predicates_not_evaluable": [],
+      "predicates_observed_true": [],
+      "predicates_unmet_but_inconclusive": [
+        "lift",
+        "inside_tray",
+        "release_settle"
+      ],
+      "safety_evaluable": true,
+      "safety_reasons": [],
+      "seed": 1216546553,
+      "task_evaluable": false,
+      "task_horizon_s": 8.0,
+      "task_outcome": "unknown",
+      "wall_s": 0.006026793998898938
+    },
+    {
+      "category": "unknown",
+      "horizon_kind": "segment",
+      "horizon_s": 0.7660000000000006,
+      "index": 5,
+      "invalid_reason": null,
+      "outcome_note": "segment horizon: the rollout is shorter than the assumed task horizon, so unmet predicates (lift, inside_tray, release_settle) are NOT evaluable as failures",
+      "predicates_not_evaluable": [],
+      "predicates_observed_true": [],
+      "predicates_unmet_but_inconclusive": [
+        "lift",
+        "inside_tray",
+        "release_settle"
+      ],
+      "safety_evaluable": true,
+      "safety_reasons": [],
+      "seed": 2078861726,
+      "task_evaluable": false,
+      "task_horizon_s": 8.0,
+      "task_outcome": "unknown",
+      "wall_s": 0.0066599650017451495
+    },
+    {
+      "category": "unknown",
+      "horizon_kind": "segment",
+      "horizon_s": 0.7660000000000006,
+      "index": 6,
+      "invalid_reason": null,
+      "outcome_note": "segment horizon: the rollout is shorter than the assumed task horizon, so unmet predicates (lift, inside_tray, release_settle) are NOT evaluable as failures",
+      "predicates_not_evaluable": [],
+      "predicates_observed_true": [],
+      "predicates_unmet_but_inconclusive": [
+        "lift",
+        "inside_tray",
+        "release_settle"
+      ],
+      "safety_evaluable": true,
+      "safety_reasons": [],
+      "seed": 2471122328,
+      "task_evaluable": false,
+      "task_horizon_s": 8.0,
+      "task_outcome": "unknown",
+      "wall_s": 0.006034805002855137
+    },
+    {
+      "category": "unknown",
+      "horizon_kind": "segment",
+      "horizon_s": 0.7660000000000006,
+      "index": 7,
+      "invalid_reason": null,
+      "outcome_note": "segment horizon: the rollout is shorter than the assumed task horizon, so unmet predicates (lift, inside_tray, release_settle) are NOT evaluable as failures",
+      "predicates_not_evaluable": [],
+      "predicates_observed_true": [],
+      "predicates_unmet_but_inconclusive": [
+        "lift",
+        "inside_tray",
+        "release_settle"
+      ],
+      "safety_evaluable": true,
+      "safety_reasons": [],
+      "seed": 23012616,
+      "task_evaluable": false,
+      "task_horizon_s": 8.0,
+      "task_outcome": "unknown",
+      "wall_s": 0.0059183370030950755
+    },
+    {
+      "category": "unknown",
+      "horizon_kind": "segment",
+      "horizon_s": 0.7660000000000006,
+      "index": 8,
+      "invalid_reason": null,
+      "outcome_note": "segment horizon: the rollout is shorter than the assumed task horizon, so unmet predicates (lift, inside_tray, release_settle) are NOT evaluable as failures",
+      "predicates_not_evaluable": [],
+      "predicates_observed_true": [],
+      "predicates_unmet_but_inconclusive": [
+        "lift",
+        "inside_tray",
+        "release_settle"
+      ],
+      "safety_evaluable": true,
+      "safety_reasons": [],
+      "seed": 3031610183,
+      "task_evaluable": false,
+      "task_horizon_s": 8.0,
+      "task_outcome": "unknown",
+      "wall_s": 0.005997794010909274
+    },
+    {
+      "category": "unknown",
+      "horizon_kind": "segment",
+      "horizon_s": 0.7660000000000006,
+      "index": 9,
+      "invalid_reason": null,
+      "outcome_note": "segment horizon: the rollout is shorter than the assumed task horizon, so unmet predicates (lift, inside_tray, release_settle) are NOT evaluable as failures",
+      "predicates_not_evaluable": [],
+      "predicates_observed_true": [],
+      "predicates_unmet_but_inconclusive": [
+        "lift",
+        "inside_tray",
+        "release_settle"
+      ],
+      "safety_evaluable": true,
+      "safety_reasons": [],
+      "seed": 2976135721,
+      "task_evaluable": false,
+      "task_horizon_s": 8.0,
+      "task_outcome": "unknown",
+      "wall_s": 0.00592668799799867
+    }
+  ],
+  "scene_label": "SYNTHETIC DEMO SCENE (invented values, CAD geometry; not a calibrated twin)",
+  "scene_mode": "synthetic_demo",
+  "schema": "offline-verification-v0.1",
+  "segment": {
+    "action_sha256": "dce6489748e01ba968664f00968a00e3005aead8f23f15f3fa16eb1e76262616",
+    "comparison_exact": true,
+    "contract_id": "e7e380119f5ee4d5c00679a9e9032a45a7b6b91e4a8d90cdede5f0faa3929111",
+    "data_origin": "synthetic_fixture",
+    "flags": [
+      "untrained_policy: output of a smoke/fixture policy; must NOT be reported as a trained policy",
+      "synthetic_fixture: invented/synthetic data; not evidence about the physical robot"
+    ],
+    "policy_kind": "smoke_random_init_few_steps",
+    "policy_label": "NOT A TRAINED POLICY: kind=smoke_random_init_few_steps, trained_for_task=False (smoke/fixture output; no task competence implied)",
+    "provenance_label": "[data_origin=synthetic_fixture] SYNTHETIC SMOKE-TEST POLICY OUTPUT - not a trained policy, not a thesis finding | NOT A TRAINED POLICY: kind=smoke_random_init_few_steps, trained_for_task=False (smoke/fixture output; no task competence implied)",
+    "reported_as_trained": false,
+    "segment_id": "890b6404a56dac72",
+    "source_path": "/home/apic3/guhan_c/sim_before_act/outputs/offline_demo_gate_fix_v1/03_act_smoke/action_segment.json",
+    "trained_for_task": false
+  },
+  "simulated_failure_fraction": null,
+  "status": "INSUFFICIENT_EVIDENCE",
+  "threshold": 0.3,
+  "threshold_calibrated": false,
+  "threshold_note": "UNCALIBRATED placeholder: not derived from physical data",
+  "wall_s": 0.11782394800684415
+}

@@ -1,0 +1,17 @@
+[project]
+name = "sim_before_act"
+version = "0.1.0"
+description = "Sim-Before-Act: offline counterfactual verification of proposed robot action chunks (experimental research code)"
+requires-python = ">=3.10"
+dependencies = ["numpy", "mujoco>=3.1", "pyyaml"]
+
+[project.optional-dependencies]
+lerobot-import = ["pyarrow"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+markers = ["simulation: needs the MuJoCo SO-101 scene (read-only asset in ../so101_mujoco)"]

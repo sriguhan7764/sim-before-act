@@ -1,0 +1,102 @@
+schema_version: sba-scene/0.1
+mode: physical
+# ======================================================================================================================
+# PHYSICAL SCENE TEMPLATE - ALL MEASUREMENTS ARE NULL, SO RUNNING THIS CONFIG REFUSES (by design).
+# Fill every null with a MEASURED value and give its source and uncertainty (sigma). Never copy values from the
+# synthetic demo: those are invented. Physical mode ALSO refuses until the documented calibration mismatch blocker
+# (simulator joint limits/zero vs the user's active LeRobot follower calibration; docs/STATUS.md,
+# robot_collector/docs/CALIBRATION.md) is resolved and calibration.calibration_blocker_resolved_by names the evidence.
+# CAD geometry remains NOT a physically calibrated twin even when everything below is filled.
+# ======================================================================================================================
+
+robot:
+  model_xml: ../../so101_mujoco/so101_new_calib.xml
+  model_sha256: null
+
+contract:
+  representation: absolute_joint_position_targets
+  control_hz: 30
+  interpolation: zero_order_hold
+  min_chunk_len: 1
+  max_chunk_len: 200
+  max_joint_speed_deg_s: null
+  gripper_mapping: {kind: linear_0_100_to_mjcf_joint_range, zero_means: closed_at_lower_joint_limit, validated: false}
+
+simulation:
+  timestep_s: 0.002
+  settle_s: 0.5
+  task_horizon_s: 8.0
+  record_every_substeps: 5
+  wall_timeout_s: 60.0
+  init_limit_tolerance_deg: 2.0
+
+controller:
+  source: existing twin (so101_mujoco MJCF, sts3215 class). Recorded read-back is stored in every result.
+  note: Position targets are tracked by MuJoCo PD position actuators. This is NOT the real Feetech STS3215 controller.
+  expected: {kp: 998.22, kv: 2.731, forcerange_nm: 3.35, joint_damping: 0.60, joint_armature: 0.028, joint_frictionloss: 0.052}
+
+mat:
+  size_x_m: 0.4
+  size_y_m: 0.4
+  thickness_m: 0.004             # thin box; replace with the measured thickness when known
+  friction: 1.0
+  source: "size from the setup description (400 x 400 mm); thickness/friction are not measured"
+
+inputs:
+  base_to_mat:                   # MJCF 'base' frame in the mat frame (NOT calibrated). Needs a measurement procedure.
+    x_m: null
+    y_m: null
+    z_m: null
+    yaw_deg: null
+    sigma_xy_m: null
+    sigma_yaw_deg: null
+    source: null
+  cube:
+    side_m: null
+    mass_kg: null
+    x_m: null
+    y_m: null
+    yaw_deg: null
+    sigma_xy_m: null
+    sigma_yaw_deg: null
+    source: null
+  tray:
+    x_m: null
+    y_m: null
+    yaw_deg: null
+    interior_x_m: null
+    interior_y_m: null
+    rim_height_m: null
+    wall_thickness_m: null
+    floor_thickness_m: null
+    sigma_xy_m: null
+    sigma_yaw_deg: null
+    sigma_dim_m: null
+    source: null
+  initial_robot:                 # null: the initial state must then come from a segment's measured state
+    values: null
+    source: null
+
+calibration:
+  reference:
+    follower_calibration_sha256: null
+    source: null
+  calibration_blocker_resolved_by: null   # name the evidence that resolves the sim-vs-calibration mismatch; null => REFUSE
+
+outcome:
+  thresholds_calibrated: false
+  note: "ALL thresholds are ASSUMED and uncalibrated (no calibration data exists)."
+  joint_limit_tolerance_deg: 1.0
+  penetration_tolerance_m: 0.005
+  max_abs_qvel_rad_s: 100.0
+  lift_height_m: 0.06
+  inside_tray_margin_m: 0.005
+  gripper_open_pct: 50.0
+  v_settle_m_s: 0.02
+  t_settle_s: 0.3
+  contact_dist_threshold_m: 0.0
+  unsafe_contact_categories: [arm_mat_table, arm_self, arm_tray]
+
+perturbations:
+  enabled: false
+  variables: {}

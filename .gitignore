@@ -1,0 +1,26 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+MUJOCO_LOG.TXT
+*.egg-info/
+
+# local environments (never commit)
+.venv/
+guhan_c/
+guhan_c_lerobot/
+.env
+.env.*
+!.env.example
+build/
+dist/
+
+# local lab records and raw LeRobot datasets
+/gitup_uplaod_info.md
+/guhan_info.md
+/lerobot_setup/datasets/
+/so101_mujoco/datasets/
+
+# regenerable demo output (only the small reference demo run is kept)
+sim_before_act/outputs/*
+!sim_before_act/outputs/offline_demo_gate_fix_v1/
+sim_before_act/traces_out/

@@ -1,0 +1,112 @@
+# Collector config for the LeRobot-hosted teleoperation path (docs/PILOT_PROCEDURE.md).
+# LeRobot (lerobot_setup/run.sh stack) owns BOTH arm serial buses; `python -m collector.lerobot_bridge` publishes JSONL
+# taps; the collector opens ONLY the cameras and reads the taps (`record --taps-dir`). Nothing here opens an arm port.
+# Calibration: the user's LeRobot calibration JSONs. The older collector-captured follower_calibration_guhan_c.json is
+# STALE (the motors' homing offsets were rewritten by the LeRobot calibration) and must not be used.
+# Paths are relative to robot_collector/ (run every command from there).
+config_version: 1
+calibration_registry: configs/calibration_registry.yaml   # active vs stale calibration files (checked by preflight and before every pilot episode)
+mode: diagnostic            # change to `research` only after the camera-to-mat calibration is accepted and the setup pilot passes
+
+paths:
+  episodes_root: data/episodes
+  calibrations_root: data/calibrations
+
+cameras:
+  - name: front_rgbd
+    backend: realsense
+    serial: '844212071704'  # pyrealsense2 serial as of this session (USB id 904523051067 in /dev/v4l is a different identifier)
+    width: 640              # first pilot: 640x480@30 for colour AND native depth (same as lerobot_setup/run.sh)
+    height: 480
+    fps: 30                 # requested; the adapter verifies the NEGOTIATED profile and aborts on any mismatch (no substitution)
+    role: primary
+    depth: true
+    align_depth_to_color: true
+  - name: wrist
+    backend: opencv
+    device: /dev/v4l/by-id/usb-Sonix_Technology_Co.__Ltd._USB2.0_CAM1_USB2.0_CAM1-video-index0
+    enabled: true
+    role: wrist
+    width: 640
+    height: 480
+    fps: 30
+
+robot:
+  follower:
+    backend: jsonl_tap          # published by collector.lerobot_bridge; the collector never opens this port
+    port: /dev/serial/by-id/usb-1a86_USB_Single_Serial_5B14030118-if00   # informational; owned by LeRobot
+    poll_hz: 100
+    calibration_file: ../lerobot_setup/calibration/follower/g_c_follower_calibration.json
+    joints: &joints
+      - {name: shoulder_pan,  id: 1, type: revolute}
+      - {name: shoulder_lift, id: 2, type: revolute}
+      - {name: elbow_flex,    id: 3, type: revolute}
+      - {name: wrist_flex,    id: 4, type: revolute}
+      - {name: wrist_roll,    id: 5, type: revolute}
+      - {name: gripper,       id: 6, type: gripper}
+  leader:
+    backend: jsonl_tap
+    port: /dev/serial/by-id/usb-1a86_USB_Single_Serial_5A46084050-if00
+    poll_hz: 100
+    calibration_file: ../lerobot_setup/calibration/leader/g_c_leader_calibration.json
+    joints: *joints
+  commands:
+    backend: jsonl_tap
+    path: null                  # set from --taps-dir
+  control_mode: "LeRobot SO-101 leader->follower position teleoperation (leader measurement -> follower Goal_Position)"
+  controller:
+    host: lerobot 0.6.1 (source tree /home/apic3/lerobot_v6_2/lerobot/src), env guhan_c_lerobot
+    loop_hz: 30
+    max_relative_target: 10      # per-cycle clip in normalised units (degrees / gripper %), applied by LeRobot send_action
+    follower_torque: enabled by LeRobot while the bridge runs; disabled on disconnect
+    command_signal: follower Goal_Position target derived from the leader measurement (not torque/current/PWM)
+
+mat:
+  width_m: 0.400
+  length_m: 0.400
+  marker_centers_m:
+    near_left:  [-0.180, 0.020, 0.0]
+    near_right: [ 0.180, 0.020, 0.0]
+    far_left:   [-0.180, 0.380, 0.0]
+    far_right:  [ 0.180, 0.380, 0.0]
+
+markers:                         # dictionary/ids/orientations: see docs/PILOT_PROCEDURE.md step 2 (re-verify; not assumed final)
+  dictionary: DICT_4X4_50
+  size_mm: 35.0                  # OUTER BLACK square as measured 2026-11-13
+  size_excludes_white_margin_confirmed: true
+  corners:
+    near_left:  {id: 3, orientation_deg: 90}
+    near_right: {id: 1, orientation_deg: 180}
+    far_left:   {id: 2, orientation_deg: 0}
+    far_right:  {id: 0, orientation_deg: 0}
+
+calibration:
+  num_frames: 30
+  min_frames_with_all_markers: 10
+  max_reprojection_rms_px: 1.5
+  max_translation_std_mm: 2.0
+  max_rotation_std_deg: 0.3
+
+sync:
+  reference_camera: front_rgbd
+  max_state_tolerance_ms: 20.0     # bridge reads at 30 Hz, so a state is at most ~17 ms from a frame; keep >= 17 ms
+  max_command_tolerance_ms: 50.0
+  max_camera_tolerance_ms: 20.0
+  interpolation: none
+
+recording:
+  queue_max_items: 256
+  overflow_policy: flag_and_drop
+  flush_interval_s: 2.0
+  min_free_disk_gb: 5.0
+  png_compression: 1
+  auto_export: [rgb_joint_angles, rgbd_motor_positions]
+
+research_gates:
+  require_calibration_accepted: true
+  require_marker_size_confirmed: true
+  require_all_cameras_connected: true
+  require_follower_connected: true
+  require_robot_calibration_file: true
+  require_depth: true
+  forbid_mock: true

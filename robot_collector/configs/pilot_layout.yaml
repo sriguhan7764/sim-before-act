@@ -1,0 +1,28 @@
+# Pilot layout: red cube -> blue circular tray on the 40 x 40 cm mat.
+# EVERY measurement below is null until the operator measures it (docs/PILOT_PROCEDURE.md step 4).
+# Nothing here is guessed, defaulted or estimated from images. Poses are in the MAT frame (metres, degrees):
+#   origin = midpoint of the mat edge nearest the robot, +X right (seen from robot), +Y away, +Z up, yaw CCW from +X seen from above.
+# The mat frame is NOT the robot-base frame; no mat->base transform is validated yet.
+# source: manual_measurement | known_fixture_placement | operator_estimate ; sigma_mm = your 1-sigma placement uncertainty.
+layout_version: 1
+task:
+  name: pick_red_cube_place_in_blue_tray
+  instruction: "Pick up the red cube and place it inside the blue tray."   # ACT is not language-conditioned; kept as metadata only
+frames:
+  mat: "origin mid-point of near edge; +X right seen from robot; +Y away; +Z up"
+  yaw: "CCW degrees about +Z from +X"
+cube:
+  dimensions_mm: null          # [x, y, z] measured with calipers
+  dimensions_source: null
+tray:
+  interior_diameter_mm: null
+  rim_height_mm: null          # height of rim above mat
+  interior_depth_mm: null
+  rim_thickness_mm: null
+  pose_mat_frame: {x_m: null, y_m: null, yaw_deg: null, source: null, sigma_mm: null, measured_by: null, measurement_note: null}
+cube_start_positions:          # five positions, six demonstrations each; ids are stable labels, not coordinates
+  P1: {x_m: null, y_m: null, yaw_deg: null, source: null, sigma_mm: null, measured_by: null, measurement_note: null}
+  P2: {x_m: null, y_m: null, yaw_deg: null, source: null, sigma_mm: null, measured_by: null, measurement_note: null}
+  P3: {x_m: null, y_m: null, yaw_deg: null, source: null, sigma_mm: null, measured_by: null, measurement_note: null}
+  P4: {x_m: null, y_m: null, yaw_deg: null, source: null, sigma_mm: null, measured_by: null, measurement_note: null}
+  P5: {x_m: null, y_m: null, yaw_deg: null, source: null, sigma_mm: null, measured_by: null, measurement_note: null}
